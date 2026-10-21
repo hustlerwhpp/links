@@ -199,6 +199,21 @@ body::after{
   padding-left:8px;
 }
 
+.card-text{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  flex:1;
+  min-width:0;
+}
+.card-desc{
+  font-size:12.5px;
+  font-weight:400;
+  line-height:1.35;
+  color:var(--muted);
+  padding-left:8px;
+}
+
 .card-arrow{
   display:flex;
   align-items:center;
@@ -269,25 +284,25 @@ body::after{
 
   <a href="https://rasp.whpp.site/" class="card s1" target="_blank" rel="noopener">
     <span class="stripe"></span>
-    <span class="card-title">Расписание</span>
+    <span class="card-text"><span class="card-title">Расписание</span><span class="card-desc">Расписание занятий: недели и подгруппы</span></span>
     <span class="card-arrow">→</span>
   </a>
 
   <a href="https://drive.whpp.site/" class="card s2" target="_blank" rel="noopener">
     <span class="stripe"></span>
-    <span class="card-title">AirDrive</span>
+    <span class="card-text"><span class="card-title">AirDrive</span><span class="card-desc">Бесплатное облачное хранилище файлов</span></span>
     <span class="card-arrow">→</span>
   </a>
 
   <a href="https://form.whpp.site/" class="card s2" target="_blank" rel="noopener">
     <span class="stripe"></span>
-    <span class="card-title">Formatter</span>
+    <span class="card-text"><span class="card-title">Formatter</span><span class="card-desc">Оформление документов по ГОСТ за пару кликов</span></span>
     <span class="card-arrow">→</span>
   </a>
 
   <a href="https://tools.whpp.site/" class="card s3" target="_blank" rel="noopener">
     <span class="stripe"></span>
-    <span class="card-title">WHPP Tools</span>
+    <span class="card-text"><span class="card-title">WHPP Tools</span><span class="card-desc">36 онлайн-инструментов для файлов, текста и кода</span></span>
     <span class="card-arrow">→</span>
   </a>
 
