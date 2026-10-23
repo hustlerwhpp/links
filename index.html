@@ -16,300 +16,293 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%230b021a'/><text x='50' y='70' font-size='60' font-weight='bold' text-anchor='middle' fill='%23ffffff' font-family='sans-serif'>N</text></svg>">
 <style>
 :root{
-  --bg:#07070a;
+  --bg:#07070c;
   --surface:rgba(255,255,255,0.04);
   --surface-hi:rgba(255,255,255,0.07);
-  --border:rgba(255,255,255,0.08);
-  --border-hi:rgba(255,255,255,0.18);
-  --text:#f4f4f6;
-  --text-dim:#a8a8b3;
-  --muted:#6c6c78;
+  --border:rgba(255,255,255,0.09);
+  --border-hi:rgba(255,255,255,0.2);
+  --text:#f5f5f8;
+  --text-dim:#a9a9b6;
+  --muted:#71717e;
   --accent:#7c5cff;
   --accent-2:#a78bfa;
-  --glow:rgba(124,92,255,0.4);
+  --cyan:#56ccf2;
   --ease:cubic-bezier(.2,.8,.2,1);
+  --radius:22px;
 }
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 
 body{
   min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
   font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   font-size:16px;
   color:var(--text);
   background:var(--bg);
   overflow-x:hidden;
-  padding:40px 20px;
   -webkit-font-smoothing:antialiased;
   position:relative;
 }
 
-/* фон: мягкое свечение сверху + снизу */
-body::before{
-  content:'';
-  position:fixed;
-  top:-40%;
-  left:50%;
-  transform:translateX(-50%);
-  width:1100px;
-  height:1100px;
-  background:radial-gradient(circle, rgba(124,92,255,0.18) 0%, transparent 60%);
+/* фон: свечения + тонкая сетка */
+.bg-fx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg-fx::before{
+  content:'';position:absolute;top:-45%;left:50%;transform:translateX(-50%);
+  width:1150px;height:1150px;
+  background:radial-gradient(circle, rgba(124,92,255,0.20) 0%, transparent 60%);
   filter:blur(60px);
-  pointer-events:none;
-  z-index:0;
 }
-body::after{
-  content:'';
-  position:fixed;
-  bottom:-50%;
-  right:-15%;
-  width:900px;
-  height:900px;
-  background:radial-gradient(circle, rgba(80,200,255,0.08) 0%, transparent 65%);
+.bg-fx::after{
+  content:'';position:absolute;bottom:-55%;right:-12%;
+  width:900px;height:900px;
+  background:radial-gradient(circle, rgba(86,204,242,0.09) 0%, transparent 65%);
   filter:blur(80px);
-  pointer-events:none;
-  z-index:0;
 }
-
-/* лёгкая точечная текстура */
+.bg-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size:56px 56px;
+  -webkit-mask-image:radial-gradient(ellipse 125% 90% at 50% -10%, #000 30%, transparent 75%);
+  mask-image:radial-gradient(ellipse 125% 90% at 50% -10%, #000 30%, transparent 75%);
+}
 .noise{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:1;
-  opacity:0.035;
+  position:fixed;inset:0;pointer-events:none;z-index:1;opacity:0.032;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* контейнер */
-.hub{
-  position:relative;
-  z-index:2;
-  width:100%;
-  max-width:440px;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  animation:fadeUp 0.9s var(--ease) both;
-}
+.page{position:relative;z-index:2;max-width:1060px;margin:0 auto;padding:26px 24px 34px}
 
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:translateY(0)}
+/* ---------- верхняя плашка ---------- */
+.top{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  animation:fadeUp .8s var(--ease) both;
 }
-
-/* заголовок */
-.hub-title{
-  text-align:center;
-  font-size:15px;
-  font-weight:500;
-  letter-spacing:0.02em;
-  color:var(--text-dim);
-  margin-bottom:32px;
-  text-transform:lowercase;
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--text)}
+.brand-mark{
+  width:38px;height:38px;border-radius:11px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg, #7c5cff 0%, #5b48d9 100%);
+  box-shadow:0 6px 20px rgba(124,92,255,0.45), inset 0 1px 0 rgba(255,255,255,0.25);
 }
+.brand-mark svg{width:21px;height:21px}
+.brand-name{font-size:18px;font-weight:800;letter-spacing:0.06em}
+.top-note{font-size:13px;font-weight:500;color:var(--muted);letter-spacing:0.01em}
+@media (max-width:560px){.top-note{display:none}}
 
-/* карточка ссылки */
+/* ---------- герой ---------- */
+.hero{text-align:center;padding:74px 0 54px;animation:fadeUp .9s var(--ease) .05s both}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 14px;border-radius:999px;
+  background:rgba(124,92,255,0.10);border:1px solid rgba(124,92,255,0.28);
+  font-size:12.5px;font-weight:600;letter-spacing:0.04em;color:var(--accent-2);
+  text-transform:uppercase;
+}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 10px rgba(74,222,128,0.9);animation:pulseDot 2.4s ease-in-out infinite}
+@keyframes pulseDot{0%,100%{opacity:1}50%{opacity:0.35}}
+.hero h1{
+  margin:26px auto 0;max-width:760px;
+  font-size:clamp(42px, 7.2vw, 74px);
+  font-weight:900;line-height:1.04;letter-spacing:-0.03em;
+}
+.hero h1 .grad{
+  background:linear-gradient(92deg, #a78bfa 0%, #7c5cff 42%, #56ccf2 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.hero-sub{
+  margin:22px auto 0;max-width:560px;
+  font-size:clamp(16px, 2.2vw, 18.5px);line-height:1.55;color:var(--text-dim);font-weight:450;
+}
+.hero-facts{
+  margin-top:30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;
+}
+.fact{
+  padding:8px 15px;border-radius:999px;
+  background:var(--surface);border:1px solid var(--border);
+  font-size:13px;font-weight:550;color:var(--text-dim);
+}
+.fact b{color:var(--text);font-weight:700}
+
+/* ---------- сетка сервисов ---------- */
+.grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  animation:fadeUp .9s var(--ease) .12s both;
+}
+@media (max-width:719px){.grid{grid-template-columns:1fr}}
+
 .card{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  padding:20px 24px;
-  border-radius:16px;
-  text-decoration:none;
-  color:var(--text);
-  background:var(--surface);
+  position:relative;display:block;text-decoration:none;color:var(--text);
+  padding:26px 26px 24px;border-radius:var(--radius);
+  background:linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.028));
   border:1px solid var(--border);
-  position:relative;
   overflow:hidden;
-  transition:
-    transform 0.35s var(--ease),
-    border-color 0.35s var(--ease),
-    background 0.35s var(--ease),
-    box-shadow 0.35s var(--ease);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-  animation:fadeUp 0.9s var(--ease) both;
+  transition:transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
 }
-.card:nth-child(2){animation-delay:0.08s}
-.card:nth-child(3){animation-delay:0.16s}
-.card:nth-child(4){animation-delay:0.24s}
-.card:nth-child(5){animation-delay:0.32s}
-
 .card::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:linear-gradient(90deg, transparent 0%, rgba(124,92,255,0.08) 50%, transparent 100%);
-  transform:translateX(-100%);
-  transition:transform 0.7s var(--ease);
-  pointer-events:none;
+  content:'';position:absolute;inset:0;opacity:0;transition:opacity .35s var(--ease);pointer-events:none;
+  background:radial-gradient(420px 240px at 18% 0%, var(--tint, rgba(124,92,255,0.16)), transparent 65%);
 }
-.card:hover::before{
-  transform:translateX(100%);
-}
-.card:hover{
-  transform:translateY(-2px);
-  border-color:var(--border-hi);
-  background:var(--surface-hi);
-  box-shadow:
-    0 12px 40px rgba(0,0,0,0.4),
-    0 0 0 1px rgba(124,92,255,0.15),
-    0 0 60px rgba(124,92,255,0.12);
-}
-.card:active{
-  transform:translateY(0);
-}
+.card:hover{transform:translateY(-4px);border-color:var(--border-hi);box-shadow:0 22px 48px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04)}
+.card:hover::before{opacity:1}
+.card:active{transform:translateY(-1px)}
+.card:focus-visible{outline:2px solid var(--accent-2);outline-offset:3px}
 
-/* тонкая цветная полоска слева */
-.card .stripe{
-  position:absolute;
-  left:0;
-  top:20%;
-  bottom:20%;
-  width:2px;
-  border-radius:2px;
-  background:var(--accent);
-  opacity:0.9;
-  transition:all 0.35s var(--ease);
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+.icon-tile{
+  width:52px;height:52px;border-radius:15px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--tile, linear-gradient(135deg,#7c5cff,#5b48d9));
+  box-shadow:0 10px 24px var(--tile-shadow, rgba(124,92,255,0.35)), inset 0 1px 0 rgba(255,255,255,0.28);
+  transition:transform .35s var(--ease);
 }
-.card:hover .stripe{
-  top:0;
-  bottom:0;
-  box-shadow:0 0 20px var(--glow);
-}
-.card.s1 .stripe{background:linear-gradient(180deg,#7c5cff,#a78bfa)}
-.card.s2 .stripe{background:linear-gradient(180deg,#c9ff3d,#7cffb2)}
-.card.s3 .stripe{background:linear-gradient(180deg,#7cd4ff,#7c5cff)}
-
-.card-title{
-  font-size:16px;
-  font-weight:500;
-  letter-spacing:-0.01em;
-  color:var(--text);
-  padding-left:8px;
-}
-
-.card-text{
-  display:flex;
-  flex-direction:column;
-  gap:2px;
-  flex:1;
-  min-width:0;
-}
-.card-desc{
-  font-size:12.5px;
-  font-weight:400;
-  line-height:1.35;
-  color:var(--muted);
-  padding-left:8px;
-}
-
+.card:hover .icon-tile{transform:scale(1.06) rotate(-3deg)}
+.icon-tile svg{width:26px;height:26px}
 .card-arrow{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:28px;
-  height:28px;
-  border-radius:50%;
-  background:rgba(255,255,255,0.05);
-  border:1px solid var(--border);
-  font-size:13px;
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,0.05);border:1px solid var(--border);
   color:var(--muted);
-  flex-shrink:0;
-  transition:all 0.35s var(--ease);
+  transition:all .35s var(--ease);
 }
-.card:hover .card-arrow{
-  color:var(--text);
-  background:rgba(124,92,255,0.15);
-  border-color:rgba(124,92,255,0.4);
-  transform:translateX(4px);
-  box-shadow:0 0 20px rgba(124,92,255,0.2);
-}
+.card-arrow svg{width:15px;height:15px;transition:transform .35s var(--ease)}
+.card:hover .card-arrow{background:rgba(124,92,255,0.16);border-color:rgba(124,92,255,0.45);color:var(--text)}
+.card:hover .card-arrow svg{transform:translate(2px,-2px)}
 
-/* нижняя подпись */
-.sign{
-  text-align:center;
-  font-size:12px;
-  color:var(--muted);
-  margin-top:36px;
-  letter-spacing:0.03em;
-  animation:fadeUp 0.9s var(--ease) 0.35s both;
-}
-.sign .heart{
-  color:var(--accent-2);
-  display:inline-block;
-  animation:beat 2.4s ease-in-out infinite;
-}
-@keyframes beat{
-  0%,100%{transform:scale(1)}
-  20%{transform:scale(1.2)}
-  40%{transform:scale(1)}
-}
+.card-title{margin-top:20px;font-size:20px;font-weight:750;letter-spacing:-0.015em}
+.card-desc{margin-top:7px;font-size:14.5px;line-height:1.5;color:var(--text-dim);max-width:400px}
+.card-link{margin-top:17px;font-size:13px;font-weight:600;color:var(--muted);letter-spacing:0.01em}
+.card-link span{color:var(--accent-2)}
 
-/* мобильные */
-@media (max-width:480px){
-  body{padding:32px 16px}
-  .hub{gap:10px}
-  .card{padding:18px 20px;border-radius:14px}
-  .card-title{font-size:15px}
-  .card-arrow{width:26px;height:26px;font-size:12px}
-  .hub-title{margin-bottom:24px;font-size:14px}
+/* индивидуальные оттенки карточек */
+.card.rasp{--tint:rgba(124,92,255,0.18);--tile:linear-gradient(135deg,#8b7cff,#5b48d9);--tile-shadow:rgba(124,92,255,0.38)}
+.card.drive{--tint:rgba(163,230,53,0.13);--tile:linear-gradient(135deg,#a3e635,#22c55e);--tile-shadow:rgba(74,222,128,0.32)}
+.card.form{--tint:rgba(86,204,242,0.14);--tile:linear-gradient(135deg,#56ccf2,#3b82f6);--tile-shadow:rgba(86,204,242,0.32)}
+.card.tools{--tint:rgba(251,191,36,0.12);--tile:linear-gradient(135deg,#fbbf24,#f97316);--tile-shadow:rgba(251,191,36,0.30)}
+
+/* ---------- подвал ---------- */
+.footer{
+  margin-top:56px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.07);
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;
+  font-size:13px;color:var(--muted);
+  animation:fadeUp .9s var(--ease) .2s both;
+}
+.footer .made{display:inline-flex;align-items:center;gap:6px}
+.footer .heart{width:13px;height:13px;color:var(--accent-2);display:inline-block;vertical-align:-2px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+@media (max-width:560px){
+  .page{padding:20px 16px 28px}
+  .hero{padding:52px 0 40px}
+  .card{padding:22px 20px 20px}
+  .card-title{font-size:18.5px}
+  .footer{justify-content:center;text-align:center}
 }
 
 @media (prefers-reduced-motion: reduce){
-  *,*::before,*::after{
-    animation-duration:0.01ms !important;
-    transition-duration:0.01ms !important;
-  }
+  *,*::before,*::after{animation-duration:0.01ms !important;transition-duration:0.01ms !important}
+  html{scroll-behavior:auto}
 }
 </style>
 </head>
 <body>
 
+<div class="bg-fx" aria-hidden="true"><div class="bg-grid"></div></div>
 <div class="noise" aria-hidden="true"></div>
 
-<div class="hub">
+<div class="page">
 
-  <div class="hub-title">кто это сделал?</div>
+  <header class="top">
+    <a class="brand" href="https://whpp.site/" aria-label="WHPP — главная">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5l3.5 14L11 8l3.5 11L18 5"/></svg>
+      </span>
+      <span class="brand-name">WHPP</span>
+    </a>
+    <div class="top-note">бесплатные онлайн-сервисы</div>
+  </header>
 
-  <a href="https://rasp.whpp.site/" class="card s1" target="_blank" rel="noopener">
-    <span class="stripe"></span>
-    <span class="card-text"><span class="card-title">Расписание</span><span class="card-desc">Расписание занятий: недели и подгруппы</span></span>
-    <span class="card-arrow">→</span>
-  </a>
+  <section class="hero">
+    <span class="eyebrow"><span class="dot"></span>всё работает прямо в браузере</span>
+    <h1>Полезные сервисы.<br><span class="grad">Без лишнего.</span></h1>
+    <p class="hero-sub">Храните файлы, оформляйте документы по ГОСТ, смотрите расписание и пользуйтесь набором из 36 инструментов — бесплатно и без установки программ.</p>
+    <div class="hero-facts">
+      <span class="fact"><b>4</b> сервиса</span>
+      <span class="fact"><b>0 ₽</b> — навсегда бесплатно</span>
+      <span class="fact">без рекламы</span>
+    </div>
+  </section>
 
-  <a href="https://drive.whpp.site/" class="card s2" target="_blank" rel="noopener">
-    <span class="stripe"></span>
-    <span class="card-text"><span class="card-title">AirDrive</span><span class="card-desc">Бесплатное облачное хранилище файлов</span></span>
-    <span class="card-arrow">→</span>
-  </a>
+  <main class="grid">
 
-  <a href="https://form.whpp.site/" class="card s2" target="_blank" rel="noopener">
-    <span class="stripe"></span>
-    <span class="card-text"><span class="card-title">Formatter</span><span class="card-desc">Оформление документов по ГОСТ за пару кликов</span></span>
-    <span class="card-arrow">→</span>
-  </a>
+    <a href="https://rasp.whpp.site/" class="card rasp" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="icon-tile" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="17" rx="2.5"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="8" y1="2.5" x2="8" y2="6"/><line x1="16" y1="2.5" x2="16" y2="6"/><path d="M9 16.2l2 2 4-4.2"/></svg>
+        </span>
+        <span class="card-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="18" x2="18" y2="6"/><polyline points="8 6 18 6 18 16"/></svg>
+        </span>
+      </div>
+      <div class="card-title">Расписание</div>
+      <p class="card-desc">Расписание занятий: недели и подгруппы, пары на сегодня и на неделю — быстро и офлайн, как приложение.</p>
+      <div class="card-link"><span>rasp.whpp.site</span></div>
+    </a>
 
-  <a href="https://tools.whpp.site/" class="card s3" target="_blank" rel="noopener">
-    <span class="stripe"></span>
-    <span class="card-text"><span class="card-title">WHPP Tools</span><span class="card-desc">36 онлайн-инструментов для файлов, текста и кода</span></span>
-    <span class="card-arrow">→</span>
-  </a>
+    <a href="https://drive.whpp.site/" class="card drive" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="icon-tile" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 18.5a4.5 4.5 0 0 0 .9-8.85A6 6 0 0 0 6.7 8.9 4.8 4.8 0 0 0 7 18.5h10.5z"/><polyline points="12 12 12 21"/><polyline points="9.5 14.5 12 12 14.5 14.5"/></svg>
+        </span>
+        <span class="card-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="18" x2="18" y2="6"/><polyline points="8 6 18 6 18 16"/></svg>
+        </span>
+      </div>
+      <div class="card-title">Air Drive</div>
+      <p class="card-desc">Бесплатное облачное хранилище файлов: загружайте, делитесь ссылками и открывайте с любого устройства.</p>
+      <div class="card-link"><span>drive.whpp.site</span></div>
+    </a>
 
+    <a href="https://form.whpp.site/" class="card form" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="icon-tile" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+        </span>
+        <span class="card-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="18" x2="18" y2="6"/><polyline points="8 6 18 6 18 16"/></svg>
+        </span>
+      </div>
+      <div class="card-title">Formatter</div>
+      <p class="card-desc">Оформление документов по ГОСТ за пару кликов: поля, шрифты, заголовки и список литературы — автоматически.</p>
+      <div class="card-link"><span>form.whpp.site</span></div>
+    </a>
 
-  <div class="sign">
-    made with <span class="heart">💜</span> by me
-  </div>
+    <a href="https://tools.whpp.site/" class="card tools" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="icon-tile" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.8"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.8"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.8"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.8"/></svg>
+        </span>
+        <span class="card-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="18" x2="18" y2="6"/><polyline points="8 6 18 6 18 16"/></svg>
+        </span>
+      </div>
+      <div class="card-title">WHPP Tools</div>
+      <p class="card-desc">36 онлайн-инструментов для файлов, текста и кода: конвертеры, редакторы и генераторы в одном месте.</p>
+      <div class="card-link"><span>tools.whpp.site</span></div>
+    </a>
+
+  </main>
+
+  <footer class="footer">
+    <span>© 2026 WHPP</span>
+    <span class="made">Сделано с <svg class="heart" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> и без единой строчки рекламы</span>
+  </footer>
 
 </div>
 
