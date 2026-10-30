@@ -442,6 +442,77 @@ body::before,body::after{display:none;background:none;filter:none}
   border-color:#B7C4FF;
   box-shadow:none;
 }
+
+/* NORMAL DESIGN — обычный светлый вид. Маркер слоя: NORMAL DESIGN */
+
+/* NORMAL DESIGN — обычный светлый вид поверх всех прошлых слоёв.
+   Палитра: фон #F4F5F7, карточки #FFFFFF, текст #111827,
+   приглушённый #6B7280, рамка #E5E7EB, акцент #2563EB, текст на акценте
+   белый, мягкий акцент #DBEAFE. Радиусы: карточки 12px, кнопки 8px.
+   Никаких градиентов, никакого стекла, никаких свечений. */
+:root{
+  --bg:#F4F5F7;
+  --surface:#FFFFFF;
+  --surface-hi:#FFFFFF;
+  --border:#E5E7EB;
+  --border-hi:#2563EB;
+  --text:#111827;
+  --text-dim:#111827;
+  --muted:#6B7280;
+  --accent:#2563EB;
+  --accent-2:#2563EB;
+  --glow:none;
+}
+*,*::before,*::after{
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+body{
+  background:#F4F5F7;
+  background-color:#F4F5F7;
+  background-image:none;
+  color:#111827;
+}
+body::before,body::after{display:none;background:none;filter:none}
+.noise{display:none;opacity:0}
+.hub-title{color:#6B7280}
+.card{
+  background:#FFFFFF;
+  background-color:#FFFFFF;
+  background-image:none;
+  border:1px solid #E5E7EB;
+  border-color:#E5E7EB;
+  color:#111827;
+  border-radius:12px;
+  box-shadow:0 1px 3px rgba(0,0,0,0.08);
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+}
+.card::before{display:none;background:none}
+.card:hover{
+  border-color:#2563EB;
+  background:#FFFFFF;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+.card .stripe{background:#2563EB;background-image:none;opacity:1}
+.card.s1 .stripe,.card.s2 .stripe,.card.s3 .stripe,.card.s4 .stripe{background:#2563EB;background-image:none}
+.card:hover .stripe{box-shadow:none}
+.card-title{color:#111827}
+.card-desc{color:#6B7280}
+.card-arrow{
+  background:#DBEAFE;
+  border:1px solid #E5E7EB;
+  color:#2563EB;
+}
+.card:hover .card-arrow{
+  color:#FFFFFF;
+  background:#2563EB;
+  border-color:#2563EB;
+  box-shadow:none;
+}
+.sign{color:#6B7280}
+.sign .heart{color:#6B7280}
+
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"WHPP","url":"https://whpp.site/","inLanguage":"ru","description":"Бесплатные онлайн-сервисы WHPP: облачное хранилище файлов Air Drive, форматирование документов по ГОСТ, расписание занятий и 36 полезных инструментов."}
