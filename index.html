@@ -374,6 +374,74 @@ body::before,body::after{display:none;background:none;filter:none}
   .card{background:#FFFDF8}
   .noise{display:none}
 }
+
+/* MATERIAL DARK — тёмный слой поверх премиума (безусловный).
+   Только палитра и сплошные фоны: раскладка, отступы и тексты не меняются.
+   Палитра: фон #121212, поверхности #1D1E24 / #26282F, текст #F2F2F5,
+   приглушённый #A8A8B3, рамка rgba(255,255,255,0.12), акцент #B7C4FF,
+   мягкий акцент rgba(183,196,255,0.16), текст на акценте #1E2436.
+   Стекло убрано полностью. Подпись автора (.sign) сознательно не тронута. */
+:root{
+  --bg:#121212;
+  --surface:#1D1E24;
+  --surface-hi:#26282F;
+  --border:rgba(255,255,255,0.12);
+  --border-hi:#B7C4FF;
+  --text:#F2F2F5;
+  --text-dim:#A8A8B3;
+  --muted:#A8A8B3;
+  --accent:#B7C4FF;
+  --accent-2:#B7C4FF;
+  --glow:none;
+}
+*,*::before,*::after{
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+body{
+  background:#121212;
+  background-color:#121212;
+  background-image:none;
+  color:#F2F2F5;
+}
+body::before,body::after{display:none;background:none;filter:none}
+.noise{display:none;opacity:0}
+.hub-title{color:#A8A8B3}
+.card{
+  background:#1D1E24;
+  background-color:#1D1E24;
+  background-image:none;
+  border:1px solid rgba(255,255,255,0.12);
+  border-color:rgba(255,255,255,0.12);
+  color:#F2F2F5;
+  border-radius:24px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.45);
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+}
+.card::before{display:none;background:none}
+.card:hover{
+  border-color:#B7C4FF;
+  background:#26282F;
+  background-color:#26282F;
+  box-shadow:0 12px 28px rgba(0,0,0,0.45);
+}
+.card .stripe{background:#B7C4FF;background-image:none;opacity:1}
+.card.s1 .stripe,.card.s2 .stripe,.card.s3 .stripe,.card.s4 .stripe{background:#B7C4FF;background-image:none}
+.card:hover .stripe{box-shadow:none}
+.card-title{color:#F2F2F5}
+.card-desc{color:#A8A8B3}
+.card-arrow{
+  background:rgba(183,196,255,0.16);
+  border:1px solid rgba(255,255,255,0.12);
+  color:#B7C4FF;
+}
+.card:hover .card-arrow{
+  color:#1E2436;
+  background:#B7C4FF;
+  border-color:#B7C4FF;
+  box-shadow:none;
+}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"WHPP","url":"https://whpp.site/","inLanguage":"ru","description":"Бесплатные онлайн-сервисы WHPP: облачное хранилище файлов Air Drive, форматирование документов по ГОСТ, расписание занятий и 36 полезных инструментов."}
