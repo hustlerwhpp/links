@@ -304,6 +304,14 @@ html[data-theme="dark"] .card .stripe,html[data-theme="dark"] .card.s1 .stripe,h
 {"@context":"https://schema.org","@type":"WebSite","name":"WHPP","url":"https://whpp.site/","inLanguage":"ru","description":"Бесплатные онлайн-сервисы WHPP: облачное хранилище файлов Air Drive, форматирование документов по ГОСТ, расписание занятий и 36 полезных инструментов."}
 </script>
 <script>try{var t=localStorage.getItem("whpp-links-theme");if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t);}}catch(e){}</script>
+<style>
+/* FIX: синий акцент */
+.card .stripe,.card.s1 .stripe,.card.s2 .stripe,.card.s3 .stripe,.card.s4 .stripe{background:#2563EB!important}
+html[data-theme="dark"] .card .stripe,html[data-theme="dark"] .card.s1 .stripe,html[data-theme="dark"] .card.s2 .stripe,html[data-theme="dark"] .card.s3 .stripe,html[data-theme="dark"] .card.s4 .stripe{background:#3B82F6!important}
+@media (prefers-color-scheme: dark){html:not([data-theme]) .card .stripe,html:not([data-theme]) .card.s1 .stripe,html:not([data-theme]) .card.s2 .stripe,html:not([data-theme]) .card.s3 .stripe,html:not([data-theme]) .card.s4 .stripe{background:#3B82F6!important}}
+.card:hover .card-title{color:#2563EB!important}
+html[data-theme="dark"] .card:hover .card-title{color:#93C5FD!important}
+</style>
 </head>
 <body>
 
