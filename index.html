@@ -278,9 +278,32 @@ body::after{
   }
 }
 </style>
+<style>
+/* MONO */
+:root{--bg:#FFFFFF;--surface:#FAFAFA;--surface-hi:#F5F5F5;--border:#E5E5E5;--border-hi:#D4D4D4;--text:#111111;--text-dim:#555555;--muted:#737373;--accent:#111111;--accent-2:#333333;--glow:rgba(0,0,0,0.08);}
+@media (prefers-color-scheme: dark){html:not([data-theme]){--bg:#111111;--surface:#1A1A1A;--surface-hi:#222222;--border:#2E2E2E;--border-hi:#404040;--text:#F5F5F5;--text-dim:#D4D4D4;--muted:#A3A3A3;--accent:#FFFFFF;--accent-2:#D4D4D4;--glow:rgba(0,0,0,0.30);}}
+html[data-theme="dark"]{--bg:#111111;--surface:#1A1A1A;--surface-hi:#222222;--border:#2E2E2E;--border-hi:#404040;--text:#F5F5F5;--text-dim:#D4D4D4;--muted:#A3A3A3;--accent:#FFFFFF;--accent-2:#D4D4D4;--glow:rgba(0,0,0,0.30);}
+html[data-theme="light"]{--bg:#FFFFFF;--surface:#FAFAFA;--surface-hi:#F5F5F5;--border:#E5E5E5;--border-hi:#D4D4D4;--text:#111111;--text-dim:#555555;--muted:#737373;--accent:#111111;--accent-2:#333333;--glow:rgba(0,0,0,0.08);}
+body{background:var(--bg)!important;color:var(--text)!important}
+body::before,body::after,.noise{display:none!important}
+.card{background:var(--surface)!important;border-color:var(--border)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important}
+.card:hover{border-color:var(--border-hi)!important;background:var(--surface-hi)!important;box-shadow:0 4px 16px rgba(0,0,0,0.06)!important}
+.card::before{display:none!important}
+.card .stripe,.card.s1 .stripe,.card.s2 .stripe,.card.s3 .stripe,.card.s4 .stripe{background:#111111!important;box-shadow:none!important}
+html[data-theme="dark"] .card .stripe,html[data-theme="dark"] .card.s1 .stripe,html[data-theme="dark"] .card.s2 .stripe,html[data-theme="dark"] .card.s3 .stripe,html[data-theme="dark"] .card.s4 .stripe{background:#FFFFFF!important}
+@media (prefers-color-scheme: dark){html:not([data-theme]) .card .stripe,html:not([data-theme]) .card.s1 .stripe,html:not([data-theme]) .card.s2 .stripe,html:not([data-theme]) .card.s3 .stripe,html:not([data-theme]) .card.s4 .stripe{background:#FFFFFF!important}}
+.card:hover .stripe{box-shadow:none!important}
+.card-title{color:var(--text)!important}
+.card-desc{color:var(--text-dim)!important}
+.card-arrow{color:var(--text-dim)!important}
+.hub-title{color:var(--text-dim)!important}
+.sign{color:var(--muted)!important}
+.theme-toggle-btn{position:fixed;top:16px;right:16px;z-index:100;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:8px 12px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+</style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"WHPP","url":"https://whpp.site/","inLanguage":"ru","description":"Бесплатные онлайн-сервисы WHPP: облачное хранилище файлов Air Drive, форматирование документов по ГОСТ, расписание занятий и 36 полезных инструментов."}
 </script>
+<script>try{var t=localStorage.getItem("whpp-links-theme");if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t);}}catch(e){}</script>
 </head>
 <body>
 
@@ -328,5 +351,7 @@ ym(112719356, "init", {clickmap:true, trackLinks:true, accurateTrackBounce:true,
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/112719356" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+<button id="themeToggle" type="button" class="theme-toggle-btn">Тёмная тема</button>
+<script>(function(){var b=document.getElementById("themeToggle");if(!b)return;function isDark(){var t=document.documentElement.getAttribute("data-theme");if(t==="dark")return true;if(t==="light")return false;return window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;}function render(){b.textContent=isDark()?"Светлая тема":"Тёмная тема";}b.addEventListener("click",function(){var n=isDark()?"light":"dark";document.documentElement.setAttribute("data-theme",n);try{localStorage.setItem("whpp-links-theme",n);}catch(e){}render();});render();})();</script>
 </body>
 </html>
