@@ -20,8 +20,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%230b021a'/><text x='50' y='70' font-size='60' font-weight='bold' text-anchor='middle' fill='%23ffffff' font-family='sans-serif'>N</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%234f46e5'/><text x='50' y='70' font-size='60' font-weight='bold' text-anchor='middle' fill='%23ffffff' font-family='sans-serif'>N</text></svg>">
 <style>
 :root{
   --bg:#08080e;
@@ -318,7 +318,7 @@ html[data-theme="dark"] .card:hover .card-title{color:#93C5FD!important}
 @media (prefers-color-scheme: dark){html:not([data-theme]){--bg:#202329;--surface:#2C2F36;--surface-hi:#3A3E47;--border:#4C515C;--border-hi:#6D7484;--text:#E0E2E8;--text-dim:#B2B8C6;--muted:#A2A9B8;--accent:#7F63BC;--accent-2:#A58AD8;--glow:rgba(127,99,188,0.25);}}
 html[data-theme="dark"]{--bg:#202329;--surface:#2C2F36;--surface-hi:#3A3E47;--border:#4C515C;--border-hi:#6D7484;--text:#E0E2E8;--text-dim:#B2B8C6;--muted:#A2A9B8;--accent:#7F63BC;--accent-2:#A58AD8;--glow:rgba(127,99,188,0.25);}
 html[data-theme="light"]{--bg:#E6E7EA;--surface:#EDEEF0;--surface-hi:#E2E4E9;--border:#C3C7D1;--border-hi:#A9AEB9;--text:#1F2126;--text-dim:#525864;--muted:#646A77;--accent:#6D51AB;--accent-2:#7F63BC;--glow:rgba(109,81,171,0.15);}
-body{font-family:Montserrat,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif!important;background:var(--bg)!important;color:var(--text)!important}
+body{font-family:'Inter',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif!important;background:var(--bg)!important;color:var(--text)!important}
 .card{background:var(--surface)!important;border-color:var(--border)!important;box-shadow:0 1px 2px rgba(0,0,0,0.06)!important;border-radius:24px!important}
 .card:hover{border-color:var(--border-hi)!important;background:var(--surface-hi)!important}
 .card .stripe,.card.s1 .stripe,.card.s2 .stripe,.card.s3 .stripe,.card.s4 .stripe{background:var(--accent)!important}
@@ -326,6 +326,31 @@ html[data-theme="dark"] .card .stripe,html[data-theme="dark"] .card.s1 .stripe,h
 .card:hover .card-title{color:var(--accent)!important}
 .theme-toggle-btn{border-radius:999px!important}
 ::selection{background:rgb(127 99 188 / 0.28)!important}
+</style>
+<style>
+/* SLATE-INDIGO — Design System: Modern Light Slate & Indigo (final override) */
+:root{--bg:#f8fafc;--surface:#ffffff;--surface-hi:#f1f5f9;--border:#e2e8f0;--border-hi:#cbd5e1;--text:#0f172a;--text-dim:#334155;--muted:#64748b;--accent:#4f46e5;--accent-2:#6366f1;--glow:rgba(79,70,229,0.15);}
+html[data-theme="light"]{--bg:#f8fafc;--surface:#ffffff;--surface-hi:#f1f5f9;--border:#e2e8f0;--border-hi:#cbd5e1;--text:#0f172a;--text-dim:#334155;--muted:#64748b;--accent:#4f46e5;--accent-2:#6366f1;--glow:rgba(79,70,229,0.15);}
+@media (prefers-color-scheme: dark){html:not([data-theme]){--bg:#0f172a;--surface:#1e293b;--surface-hi:#334155;--border:#334155;--border-hi:#475569;--text:#f8fafc;--text-dim:#cbd5e1;--muted:#94a3b8;--accent:#6366f1;--accent-2:#818cf8;--glow:rgba(99,102,241,0.25);}}
+html[data-theme="dark"]{--bg:#0f172a;--surface:#1e293b;--surface-hi:#334155;--border:#334155;--border-hi:#475569;--text:#f8fafc;--text-dim:#cbd5e1;--muted:#94a3b8;--accent:#6366f1;--accent-2:#818cf8;--glow:rgba(99,102,241,0.25);}
+
+body{font-family:'Inter',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif!important;background:var(--bg)!important;color:var(--text)!important}
+::selection{background:rgb(99 102 241 / .25)!important}
+*::-webkit-scrollbar{width:6px;height:6px}
+*::-webkit-scrollbar-track{background:#f8fafc}
+*::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:4px}
+*::-webkit-scrollbar-thumb:hover{background:#94a3b8}
+*{scrollbar-width:thin;scrollbar-color:#cbd5e1 #f8fafc}
+input,textarea,select{font-family:inherit}
+input:focus,textarea:focus,select:focus{border-color:#4f46e5!important;box-shadow:0 0 0 2px rgb(99 102 241 / .20)!important;outline:none!important}
+:focus-visible{outline:2px solid rgb(99 102 241 / .5);outline-offset:1px}
+.card{background:var(--surface)!important;border-color:var(--border)!important;box-shadow:0 1px 2px 0 rgb(0 0 0 / .05)!important;border-radius:16px!important}
+.card:hover{border-color:var(--border-hi)!important;background:var(--surface)!important;box-shadow:0 1px 2px 0 rgb(0 0 0 / .05)!important}
+.card .stripe,.card.s1 .stripe,.card.s2 .stripe,.card.s3 .stripe,.card.s4 .stripe{background:var(--accent)!important}
+html[data-theme="dark"] .card .stripe,html[data-theme="dark"] .card.s1 .stripe,html[data-theme="dark"] .card.s2 .stripe,html[data-theme="dark"] .card.s3 .stripe,html[data-theme="dark"] .card.s4 .stripe{background:var(--accent)!important}
+.card:hover .card-title{color:var(--accent)!important}
+html[data-theme="dark"] .card:hover .card-title{color:var(--accent-2)!important}
+.theme-toggle-btn{border-radius:12px!important;background:var(--surface)!important;border-color:var(--border)!important;color:var(--text)!important}
 </style>
 </head>
 <body>
